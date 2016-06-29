@@ -76,11 +76,20 @@ object Huffman {
     * println("integer is  : "+ theInt)
     * }
     */
-  def times(chars: List[Char]): List[(Char, Int)] = chars match {
-    case Nil => Nil
-    case x :: xs =>
-      val (char, count) = (x, chars.count(_ == x))
-      (char, count) :: times(xs.filterNot(_ == char))
+  def times(chars: List[Char]): List[(Char, Int)] = {
+    def createList(list: List[Char], acc: List[(Char, Int)]): List[(Char, Int)] = list match {
+      case Nil => acc
+      case x :: xs =>
+        val (char, count) = (x, chars.count(_ == x))
+        createList(xs.filterNot(_ == char), (char, count) :: acc)
+    }
+    createList(chars, Nil)
+//    chars match {
+//      case Nil => Nil
+//      case x :: xs =>
+//        val (char, count) = (x, chars.count(_ == x))
+//        (char, count) :: times(xs.filterNot(_ == char))
+//    }
   }
 
   /**
@@ -90,9 +99,13 @@ object Huffman {
     * head of the list should have the smallest weight), where the weight
     * of a leaf is the frequency of the character.
     */
-  def makeOrderedLeafList(freqs: List[(Char, Int)]): List[Leaf] = freqs match {
-    case Nil => Nil
-    case x :: xs => ???
+  def makeOrderedLeafList(freqs: List[(Char, Int)]): List[Leaf] = {
+    def createList(list: List[(Char, Int)], accLeaves: List[Leaf]): List[Leaf] = list match {
+      case Nil => accLeaves
+      case x :: xs => createList(xs, Leaf(x._1, x._2) :: accLeaves)
+    }
+    val leaves = createList(freqs, Nil)
+    leaves.sortWith(_.weight < _.weight)
   }
 
   /**
@@ -161,7 +174,7 @@ object Huffman {
 
   /**
     * What does the secret message say? Can you decode it?
-    * For the decoding use the `frenchCode' Huffman tree defined above.
+    * For the decoding use the `frenchCode` Huffman tree defined above.
     **/
   val secret: List[Bit] = List(0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1)
 
