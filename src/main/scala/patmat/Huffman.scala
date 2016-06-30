@@ -80,7 +80,7 @@ object Huffman {
     def createList(list: List[Char], acc: List[(Char, Int)]): List[(Char, Int)] = list match {
       case Nil => acc
       case x :: xs =>
-        val (char, count) = (x, chars.count(_ == x))
+        val (char, count) = (x, list.count(_ == x))
         createList(xs.filterNot(_ == char), (char, count) :: acc)
     }
     createList(chars, Nil)
