@@ -1,11 +1,10 @@
 import patmat.Huffman
+val x = Huffman.decodedSecret
+x
+val secret1 = List(1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1)
+val x2 = Huffman.decode(Huffman.frenchCode, secret1)
+x2
+val secret2 = List(0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1)
+val x3 = Huffman.decode(Huffman.frenchCode, secret2)
+x3
 
-val x = "abcd".toList
-val y = x.filter(a => a.toInt > 200).headOption
-val y2 = x.find(a => a.toInt > 200)
-y == y2
-val aa = "aaabbaacchhggddccvvggbbddaa".toList
-val b = Huffman.times(aa)
-val c = List[String]().sortWith(_.length > _.length)
-val d = List(('t', 2), ('e', 1), ('x', 3))
-val e = Huffman.makeOrderedLeafList(d)
